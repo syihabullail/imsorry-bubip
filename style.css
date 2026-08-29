@@ -1,0 +1,194 @@
+:root {
+    --bg-color: #FFF0F5; 
+    --accent: #FFB6C1; 
+    --accent-dark: #FF69B4; 
+    --envelope-color: #FFC0CB; 
+    --envelope-shadow: #DB7093; 
+    --text: #4A235A; 
+    --paper: #FFFFFF;
+}
+
+* {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'VT323', monospace;
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden; 
+}
+
+/* --- METER SCREEN (Spam Click) --- */
+#meter-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 200;
+}
+
+.meter-box {
+    text-align: center;
+    background: var(--paper);
+    padding: 30px;
+    border: 4px solid var(--text);
+    box-shadow: 10px 10px 0 var(--accent);
+}
+
+#big-heart {
+    font-size: 80px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.1s;
+}
+
+#big-heart:active {
+    transform: scale(0.8);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    border: 3px solid var(--text);
+    background: #fff;
+    margin: 20px 0 10px;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-dark);
+    transition: width 0.2s;
+}
+
+/* --- ENVELOPE SCREEN --- */
+#envelope-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 100; transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.envelope-wrapper {
+    height: 200px; width: 300px;
+    background-color: var(--envelope-shadow);
+    position: relative;
+    display: flex; justify-content: center;
+    z-index: 0; cursor: pointer;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+.envelope-wrapper:hover { transform: scale(1.05); }
+
+.lid {
+    position: absolute; height: 100%; width: 100%; top: 0; left: 0;
+    border-right: 150px solid transparent; border-bottom: 100px solid transparent; border-left: 150px solid transparent;
+    transform-origin: top; transition: transform 0.4s ease-in-out;
+}
+.lid.one { border-top: 100px solid var(--envelope-color); transform: rotateX(0deg); z-index: 3; }
+.lid.two { border-top: 100px solid var(--envelope-shadow); transform: rotateX(90deg); z-index: 1; }
+
+.envelope {
+    position: absolute; height: 100%; width: 100%; top: 0; left: 0;
+    border-top: 100px solid transparent; border-right: 150px solid var(--envelope-color);
+    border-bottom: 100px solid var(--envelope-color); border-left: 150px solid #FFC9D2;
+    z-index: 3;
+}
+
+.letter {
+    position: absolute; top: 0; width: 80%; height: 80%;
+    background-color: #FFF; border-radius: 5px; z-index: 2;
+    transition: 0.5s; display: flex; align-items: center; justify-content: center;
+    text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.letter p { font-family: 'Press Start 2P', cursive; font-size: 14px; color: var(--text); line-height: 1.5; }
+
+.open .lid.one { transform: rotateX(90deg); z-index: 1; }
+.open .lid.two { transform: rotateX(180deg); z-index: 0; }
+.open .letter { transform: translateY(-80px); z-index: 4; }
+.tap-hint { margin-top: 50px; font-family: 'Press Start 2P'; font-size: 10px; animation: blink 1s infinite; }
+
+/* --- MAIN CONTENT --- */
+#main-content {
+    display: none; height: 100vh; width: 100%; overflow-y: auto; overflow-x: hidden;
+    padding: 20px; flex-direction: column; align-items: center;
+}
+
+#main-content.visible {
+    display: flex; animation: fadeInPage 1.5s forwards;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card-container {
+    background: var(--paper); width: 100%; max-width: 600px;
+    border: 4px solid var(--text); box-shadow: 15px 15px 0 var(--accent);
+    padding: 30px; margin: 40px auto; position: relative; z-index: 2;
+}
+
+.card-header {
+    display: flex; align-items: center; justify-content: center; gap: 15px; 
+    border-bottom: 4px dashed var(--accent); padding-bottom: 20px; margin-bottom: 20px;
+}
+
+.card-header h1 {
+    font-family: 'Press Start 2P'; font-size: 1.2rem;
+    color: var(--text); text-align: center; line-height: 1.5;
+}
+
+.paper-content {
+    font-size: 1.4rem; line-height: 2rem;
+    background-image: linear-gradient(#eee 1px, transparent 1px);
+    background-size: 100% 2rem; padding: 10px 0; min-height: 150px;
+}
+
+.action-area { margin-top: 30px; text-align: center; display: flex; justify-content: center; gap: 15px; }
+
+.pixel-btn {
+    background: var(--accent); border: 3px solid var(--text);
+    padding: 15px 25px; font-family: 'Press Start 2P'; font-size: 0.8rem;
+    color: var(--text); cursor: pointer;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+}
+.pixel-btn:hover { transform: scale(1.05); }
+.pixel-btn:active { transform: scale(0.95); box-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
+
+#btn-nggak {
+    position: relative; /* Nanti bakal jadi absolute pas dikursorin di JS */
+}
+
+/* Music Button */
+.music-control { position: fixed; top: 20px; right: 20px; z-index: 50; }
+.music-btn-style { display: flex; align-items: center; gap: 10px; padding: 10px 15px; }
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* --- SCREEN TAMBAHAN (TOMBOL & PENUTUP) --- */
+#button-screen, #final-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 300;
+}
+
+.clean-box {
+    text-align: center;
+    background: var(--paper);
+    padding: 40px;
+    border: 4px solid var(--text);
+    box-shadow: 15px 15px 0 var(--accent);
+    width: 90%; max-width: 500px;
+}
+
+#btn-nggak {
+    transition: top 0.2s, left 0.2s; /* Biar larinya mulus */
+}

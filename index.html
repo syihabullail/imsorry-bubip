@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untuk Dissa 💕💞</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- PAGE 1: METERAN (Sekarang jadi "Buka Segel") -->
+    <div id="meter-screen">
+      <div class="meter-box">
+        <h2 style="margin-bottom: 20px; font-family: 'Press Start 2P', cursive; font-size: 14px; line-height: 1.5;">Ada pesan khusus nih!<br><br>Tap hati ini 10x buat buka segelnya 🔒</h2>
+        <div id="big-heart" onclick="spamClick()">🩷</div>
+        <div class="progress-bar">
+          <div id="progress-fill"></div>
+        </div>
+        <p id="meter-text">Membuka segel... 0%</p>
+      </div>
+    </div>
+
+    <!-- PAGE 2: AMPLOP -->
+    <div id="envelope-screen" style="display: none;">
+      <div class="envelope-wrapper" onclick="openEnvelope()">
+        <div class="lid one"></div>
+        <div class="lid two"></div>
+        <div class="envelope"></div>
+        <div class="letter">
+          <p>-`✮´-<br />Untuk<br />Dissa<br />-`✮´-</p>
+        </div>
+      </div>
+      <p class="tap-hint">Tap the envelope to open</p>
+    </div>
+
+    <!-- PAGE 3: SURAT -->
+    <div id="main-content">
+      <div class="bg-pattern"></div>
+      <div class="floating-hearts" id="heartsContainer"></div>
+
+      <div class="music-control">
+        <button onclick="toggleMusic()" id="musicToggle" class="pixel-btn music-btn-style" style="position: relative; z-index: 10;">
+          <img id="musicIcon" src="images/high-volume.png" alt="icon" style="width: 20px; height: 20px; object-fit: contain;" />
+          <span id="musicText">PLAY SONG</span>
+        </button>
+      </div>
+
+      <div class="card-container">
+        <div class="card-header">
+          <h1>MESSAGE UNLOCKED</h1>
+        </div>
+        <div class="paper-content">
+          <div class="paper-lines">
+            <p id="typewriter-text"></p>
+            <span class="cursor">|</span>
+          </div>
+        </div>
+        
+        <div class="action-area" id="action-next" style="display: none;">
+          <button class="pixel-btn" onclick="goToButtonPage()">
+            LANJUT ➔
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 4: TOMBOL KABUR -->
+    <div id="button-screen" style="display: none;">
+      <div class="clean-box">
+        <h1 style="font-family: 'Press Start 2P', cursive; font-size: 1.2rem; margin-bottom: 30px; line-height: 1.5;">Jadi... dimaafin ngga nih? 🥺</h1>
+        <div style="position: relative; height: 100px; width: 100%; display: flex; justify-content: center; gap: 20px; align-items: center;">
+          <button class="pixel-btn" id="btn-maafin" onclick="dimaafin()">
+            MAAFIN 🥺
+          </button>
+          <button class="pixel-btn" id="btn-nggak" onmouseover="kabur()">
+            NGGAK! 😡
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 5: PENUTUP -->
+    <div id="final-screen" style="display: none;">
+      <div class="card-container" style="text-align: center;">
+        <h1 style="font-family: 'Press Start 2P', cursive; font-size: 1.5rem; color: var(--accent-dark); margin-bottom: 20px;">YEEYY MAACII 🎉</h1>
+        <p style="font-size: 1.5rem; line-height: 1.8; margin-bottom: 20px;">
+          Makasih banyak sayangnya akuuu! ♥♥<br><br>
+          Aku janji <i>I will work on that</i>. Mulai sekarang bakal usahain banget buat selalu bilang <b>Good Night</b> dan ga ketiduran ninggalin kamu tiba-tiba lagi.<br><br>
+          I love youu so muchh! 🥺💖💕
+        </p>
+      </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+      <source src="audio/love.mp3" type="audio/mpeg" />
+    </audio>
+    <script src="script.js"></script>
+  </body>
+</html>
