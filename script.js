@@ -85,7 +85,7 @@ function goToButtonPage() {
 // --- 6. TOMBOL NGGAK (VERSI HP) ---
 let tolakCount = 0;
 const tolakTexts = [
-    "Yakin nih? 🥺", 
+    "Yakin nih? 😞", 
     "Beneran ga dimaafin?", 
     "Jangan ngambek donggg 😭", 
     "Plisss maafin akuuu", 
