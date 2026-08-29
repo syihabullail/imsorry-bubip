@@ -82,19 +82,36 @@ function goToButtonPage() {
     buttonScreen.style.display = 'flex';
 }
 
-// --- 6. TOMBOL KABUR-KABURAN ---
-function kabur() {
-    const btn = document.getElementById('btn-nggak');
-    btn.style.position = 'fixed';
+// --- 6. TOMBOL NGGAK (VERSI HP) ---
+let tolakCount = 0;
+const tolakTexts = [
+    "Yakin nih? 🥺", 
+    "Beneran ga dimaafin?", 
+    "Jangan ngambek donggg 😭", 
+    "Plisss maafin akuuu", 
+    "Gabisa, tombolnya rusak 😝"
+];
+
+function tolakMaaf() {
+    const btnNggak = document.getElementById('btn-nggak');
+    const btnMaafin = document.getElementById('btn-maafin');
+
+    if (tolakCount < tolakTexts.length) {
+        btnNggak.innerText = tolakTexts[tolakCount];
+    } 
     
-    const maxX = window.innerWidth - btn.clientWidth - 20;
-    const maxY = window.innerHeight - btn.clientHeight - 20;
+    if (tolakCount >= tolakTexts.length - 1) {
+        btnNggak.style.display = 'none';
+    }
     
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
+    tolakCount++;
+
+    let currentSize = parseFloat(window.getComputedStyle(btnMaafin).fontSize);
+    let currentPaddingTop = parseFloat(window.getComputedStyle(btnMaafin).paddingTop);
+    let currentPaddingSide = parseFloat(window.getComputedStyle(btnMaafin).paddingLeft);
     
-    btn.style.left = randomX + 'px';
-    btn.style.top = randomY + 'px';
+    btnMaafin.style.fontSize = (currentSize + 8) + 'px';
+    btnMaafin.style.padding = (currentPaddingTop + 4) + 'px ' + (currentPaddingSide + 8) + 'px';
 }
 
 // --- 7. PINDAH KE PAGE PENUTUP ---
